@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<string.h>
+int n;int used[20];
+long long  T[20],D[20],L[20];
+int dfs(int cnt,long long cur){
+    if (cnt==n){return 1;}
+    for (int i=0;i<n;i++){
+        if (used[i] || cur>D[i]+T[i])continue;
+        long long s=cur > T[i] ? cur : T[i];
+        used[i]=1;
+        if (dfs(cnt+1,s+L[i]))
+            return 1;
+        used[i]=0;
+    }
+    return 0;
+}
+int main(){
+    int tc;
+    scanf("%d",&tc);
+    while (tc--){
+        scanf("%d",&n);
+        
+        for (int i=0;i<n;i++){
+            scanf("%lld%lld%lld",&T[i],&D[i],&L[i]);}
+        
+        for (int i=0;i<n;i++){used[i]=0;}
+            printf("%s\n",dfs(0,0)?"YES":"NO");
+        
+    }
+    return 0;
+}

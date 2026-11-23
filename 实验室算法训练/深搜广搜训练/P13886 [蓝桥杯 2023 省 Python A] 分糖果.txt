@@ -1,0 +1,17 @@
+#include<stdio.h>
+int cnt=0,sya=9,syb=16;
+void dfs (int dep){
+    if (dep==7){
+        if (sya==0 && syb==0)
+        cnt++;return;}
+    for (int a=0;a<=9;a++){
+        for (int b=0;b<=16;b++){
+            if ( 2>a+b || a+b>5 ) continue;
+            if ( a>sya || b>syb ) continue;
+            sya-=a;syb-=b;
+            dfs(dep+1);
+            sya+=a;syb+=b;
+        }
+    }
+}
+int main(){dfs(0);printf("%d",cnt);return 0;}

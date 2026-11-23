@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include <math.h>
+void eff(double wc,double a,double b){
+    double x = (a+b) / 2;
+    if (fabs(x*x*x*x*x-2*x*x*x*x+x*x-3)<wc){printf("%.8lf",x);return;}
+    else if((x*x*x*x*x-2*x*x*x*x+x*x-3)<0){a=x;eff(wc,a,b);}
+    else if((x*x*x*x*x-2*x*x*x*x+x*x-3)>0){b=x;eff(wc,a,b);}
+}
+int main(){
+    double wc1;
+    scanf("%lf",&wc1);
+    double n=0,m=2;
+    eff(wc1,n,m);
+    return 0;
+}
