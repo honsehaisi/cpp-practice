@@ -1,9 +1,0 @@
-#include<stdio.h>
-int n;
-char s[15];
-void dfs (int dep){
-    if (dep==n){printf("%s\n",s);return;}
-    s[dep]='N';dfs(dep+1);
-    s[dep]='Y';dfs(dep+1);
-}
-int main(){scanf("%d",&n);dfs(0);return 0;}
