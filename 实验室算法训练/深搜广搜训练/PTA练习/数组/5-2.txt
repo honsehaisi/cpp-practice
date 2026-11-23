@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int k, i,c;
+    char s[35];
+    scanf("%d", &k);
+    while ((c=getchar()) == ' ') ;
+    s[0]=c;
+    for (i = 1; i < k; i++)
+        s[i] = getchar();
+    s[k] = '\0';
+    printf("%s\n", s);
+    return 0;
+}

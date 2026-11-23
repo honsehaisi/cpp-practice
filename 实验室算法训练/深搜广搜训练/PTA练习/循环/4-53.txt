@@ -1,0 +1,14 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+    int a=0,b=0;
+    char s[1000005];
+    scanf("%s",s);
+    int len=strlen(s);
+    for (int i=0;i<len;i++){
+        if (i%2!=0){a=a*10+(s[i]-'0');}
+        else if (i%2==0){b=b*10+(s[i]-'0');}
+    }
+    printf("%d %d",a,b);
+    return 0;
+}

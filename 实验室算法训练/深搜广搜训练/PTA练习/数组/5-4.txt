@@ -1,0 +1,64 @@
+#include<stdio.h>
+
+int  a[10000];    //分数
+int  rk[10000];   //排名
+double sc[10000]; //积分
+int  cnt = 0;     //人数
+int p[9] = {0, 9, 7, 6, 5, 4, 3, 2, 1};
+
+//遍历读取
+void read(void)
+{while (scanf("%d", &a[cnt]) == 1)
+        cnt++;}
+
+
+    //排序大小
+void sort(void){
+    for (int i=0;i<cnt-1;i++)
+        for (int j=0;j<cnt-1-i;j++)
+            if (a[j]<a[j+1]){
+            int t=a[j+1];
+            a[j+1]=a[j];
+            a[j]=t;}}
+
+
+//分组排名和积分
+void fenzu(void){
+    int i=0;
+    while(i<cnt){
+        int j=i;
+        while(j+1<cnt && a[j+1]==a[i])
+            j++;
+
+        int people=j-i+1;//同分组人数【i，j】
+        int total=0;     //同分组一共多少分累加(后面计算人均分total/people)
+
+        
+        for (int r=i+1;r<=j+1 && r<=8;r++) //超出8名不计入
+            total+=p[r];
+        
+        for (int t=i;t<=j;t++)  //均摊分数给同分组【i，j】的人
+        {rk[t]=i+1;
+        sc[t]=(double)total/people;}
+        
+        i = j + 1;  //进位i,从j的下一位开始继续遍历
+    }
+}
+
+    
+
+//输出结果
+void print(void)
+{    printf("XUHAO---CHENGJI-MINGCI--JIFEN---\n");
+    for (int i = 0; i < cnt; i++){
+        if (sc[i]==0)break;
+        printf("%-8d%-8d%-8d%8.3f\n", i + 1, a[i], rk[i], sc[i]);}}
+
+
+int main(){
+    read();
+    sort();
+    fenzu();
+    print();
+    return 0;
+}
