@@ -1,0 +1,43 @@
+#include<stdio.h>
+int yuefen (int p,int q){
+    int max,gy=0;
+    if (p>=q){max=p;}
+    else {max=q;}
+    for (int i=1;i<=max;i++){
+        if (p%i==0 && q%i==0){
+            if (i>gy){gy=i;}
+        }
+    } 
+    return gy;
+}
+
+int yizu (long long a,long long b,char o,long long c,long long d){
+    long long n=0,m=0;
+    if (b < 0) { a = -a; b = -b; }
+    if (d < 0) { c = -c; d = -d; }
+    if (o=='+'){
+        n=a*d+b*c;
+        m=b*d;
+    }
+    else {
+        n=a*d-b*c;
+        m=b*d;
+    }
+    if (n==0){printf("0\n");return 0;}
+    else {
+    long long g = yuefen(llabs(n), m);
+    n /= g;
+    m /= g;
+    if (m == 1) printf("%lld\n", n);
+    else    printf("%lld/%lld\n", n, m);
+    return 0;
+    }
+}
+int main(){
+    long long x,y,z,v;
+    char op;
+    while(scanf("%lld/%lld%c%lld/%lld",&x,&y,&op,&z,&v)==5){
+        yizu(x,y,op,z,v);
+    }
+    return 0;
+}
